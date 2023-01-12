@@ -19,7 +19,6 @@
     <h2 class="title">About us</h2>
     <p>SHENGASTORE is an online store that caters for everyone around South Africa. The online store started in 2012. The delivery fee depends on the items purchased. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dolore modi a beatae hic voluptate nisi vitae odio, suscipit temporibus neque voluptas rerum magni delectus. Tenetur consequuntur in dolor quam!</p>
 </div>
-
 <!---------------------------Footer Section----------------------------->
 
    
