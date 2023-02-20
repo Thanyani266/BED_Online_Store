@@ -2,7 +2,7 @@
 <?php
    include('./includes/connect.php');
    include('./functions/common_function.php');
-   @session_start();
+   session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +73,6 @@
                             <?php
                             }
                         ?>
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="#">Total Price: <?php total_cart_price(); ?></a>
                         </li>
@@ -85,10 +84,6 @@
                 </div>
             </div>
         </nav>
-        <!-- cart function-->
-        <?php 
-            cart(); 
-        ?>
         <!-- Section 2-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
@@ -114,11 +109,9 @@
                                    <a class='nav-link' href='./users/logout.php'>Logout</a>
                             </li>";
                     }
-                ?> 
+                ?>
             </ul>
         </nav>
-        <!-- Section X-->
-       
         <!-- Section 3-->
         <div class="bg-light">
             <h3 class="text-center">Shenga Store</h3>
@@ -131,11 +124,9 @@
                 <div class="row">
                     <!-- Fetching products -->
                     <?php
-                        getproducts();
+                        getallproducts();
                         getbycat();
                         getbybrand();
-                        //$ip = getIPAddress();  
-                        //echo 'User Real IP Address - '.$ip; 
                     ?>
                    
                 </div>
@@ -153,7 +144,7 @@
                 <!-- Categories -->
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-body-tertiary">
-                        <a href="#" class="nav-link text-muted bg-warning"><h4>Categories</h4></a>
+                        <a href="#" class="nav-link text-muted  bg-warning"><h4>Categories</h4></a>
                     </li>
                     <?php 
                         getcategories();

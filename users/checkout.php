@@ -1,7 +1,6 @@
 <!-- Connection -->
 <?php
    include('./includes/connect.php');
-   include('./functions/common_function.php');
    @session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online store website</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <title>Online store - Checkout page</title>
+    <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
@@ -36,10 +35,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="display_products.php">Products</a>
+                            <a class="nav-link" href="../display_products.php">Products</a>
                         </li>
                         <?php
                             if(isset($_SESSION['username'])){
@@ -53,29 +52,7 @@
                             }
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="./about.php">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./contact.php">Contact</a>
-                        </li>
-                        <?php
-                            if(isset($_SESSION['username'])){
-                                ?>
-                                  <li class='nav-item'>
-                                <a class='nav-link' href='./cart.php'><i class='fa-solid fa-cart-shopping'></i><sup><?php cart_item(); ?></sup></a>
-                            </li>
-                            <?php
-                            }else{
-                                ?>
-                                <li class='nav-item'>
-                                <a class='nav-link' href='./users/user_login.php'><i class='fa-solid fa-cart-shopping'></i><sup><?php cart_item(); ?></sup></a>
-                            </li>
-                            <?php
-                            }
-                        ?>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Total Price: <?php total_cart_price(); ?></a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex" action="search_product.php" method="get">
@@ -85,10 +62,6 @@
                 </div>
             </div>
         </nav>
-        <!-- cart function-->
-        <?php 
-            cart(); 
-        ?>
         <!-- Section 2-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
@@ -107,62 +80,40 @@
 
                     if(!isset($user)){
                         echo   "<li class='nav-item'>
-                                   <a class='nav-link' href='./users/user_login.php'>Login</a>
+                                   <a class='nav-link' href='user_login.php'>Login</a>
                                 </li>";
                     }else{
                         echo   "<li class='nav-item'>
-                                   <a class='nav-link' href='./users/logout.php'>Logout</a>
+                                   <a class='nav-link' href='logout.php'>Logout</a>
                             </li>";
                     }
-                ?> 
+                ?>
             </ul>
         </nav>
-        <!-- Section X-->
-       
         <!-- Section 3-->
         <div class="bg-light">
             <h3 class="text-center">Shenga Store</h3>
-            <p class="text-center">Online shopping experience made easy. You can shop anytime.</p>
+            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur odit dolores alias.</p>
         </div>
         <!-- Section 4-->
         <div class="row px-1">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <!-- Products -->
                 <div class="row">
-                    <!-- Fetching products -->
                     <?php
-                        getproducts();
-                        getbycat();
-                        getbybrand();
-                        //$ip = getIPAddress();  
-                        //echo 'User Real IP Address - '.$ip; 
+                        session_start();
+                        $user = $_SESSION['username'];
+                        if(!isset($user)){
+                            include('user_login.php');
+                        }else{
+                            include('payment.php');
+                        }
                     ?>
-                   
                 </div>
-            </div>
-            <div class="col-md-2 bg-secondary p-0">
-                <!-- Brands -->
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-body-tertiary">
-                        <a href="#" class="nav-link text-muted bg-warning"><h4>Delivery Brands</h4></a>
-                    </li>
-                    <?php 
-                        getbrands();
-                    ?>
-                </ul>
-                <!-- Categories -->
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-body-tertiary">
-                        <a href="#" class="nav-link text-muted bg-warning"><h4>Categories</h4></a>
-                    </li>
-                    <?php 
-                        getcategories();
-                    ?>
-                </ul>
             </div>
         </div>
         <!-- Adding footer -->
-        <?php include('./includes/footer.php'); ?>
+        <?php include('../includes/footer.php'); ?>
     </div>
     <!-- Bootstrap JS link --> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
